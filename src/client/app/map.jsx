@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 
-class mapComponent extends React.Component {
+class MapComponent extends React.Component {
     componentWillMount() {
         console.log("mounted");
     }
@@ -11,9 +11,9 @@ class mapComponent extends React.Component {
     render() {
 
         return (
-            <div>{this.props.newNumber}</div>
+            <div>map</div>
         );
     }
 }
 
-export default mapComponent;
+export default MapComponent;
