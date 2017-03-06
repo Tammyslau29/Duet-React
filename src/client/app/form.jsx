@@ -1,19 +1,14 @@
 import React from 'react';
 import {render} from 'react-dom';
 
-class formComponent extends React.Component {
-    componentWillMount() {
-        console.log("mounted");
-    }
-    componentWillUnmount() {
-        console.log("unmounted");
-    }
+class FormComponent extends React.Component {
+
     render() {
 
         return (
-            <div>{this.props.newNumber}</div>
+           <div>form</div>
         );
     }
 }
 
-export default formComponent;
+export default FormComponent;

@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 
-class profilesComponent extends React.Component {
+class ProfilesComponent extends React.Component {
     componentWillMount() {
         console.log("mounted");
     }
@@ -11,9 +11,9 @@ class profilesComponent extends React.Component {
     render() {
 
         return (
-            <div>{this.props.newNumber}</div>
+            <div>profiles</div>
         );
     }
 }
 
-export default profilesComponent;
+export default ProfilesComponent;

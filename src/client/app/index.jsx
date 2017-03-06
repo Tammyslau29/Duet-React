@@ -1,11 +1,10 @@
 import React from 'react';
-import {render} from 'react-dom';
-import MyCoolComponent from './MyCoolComponent.jsx';
+import { render } from 'react-dom';
 import { Button } from 'react-bootstrap';
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
-// import mapComponent from './map.jsx';
-// import profilesComponent from '.profiles.jsx';
-// import formComponent from '.form.jsx';
+import MapComponent from './map.jsx';
+import ProfilesComponent from './profiles.jsx';
+import FormComponent from './form.jsx';
 
 class App extends React.Component {
 
@@ -13,42 +12,46 @@ class App extends React.Component {
         super(props);
 
         this.state = {
-            counter: 0,
-            showComponent: false,
-        }
-        this.increment = this.increment.bind(this);
-    }
+            nav_bar_state: 'profiles',
+        };
 
-    increment() {
-        this.setState({
-            counter: this.state.counter+1,
-        })
     }
-
     render() {
-        let myComponent;
-        if(this.state.showComponent){
-            myComponent = <MyCoolComponent newNumber={this.state.counter} />;
+        let child;
+        switch(this.state.nav_bar_state) {
+            case 'profiles':
+                child = <ProfilesComponent />;
+                break;
+            case 'map':
+                child = <MapComponent />;
+                break;
+            case 'form':
+                child = <FormComponent />;
+                break;
         }
+
         return (
-            <Navbar inverse collapseOnSelect>
-                <Navbar.Header>
-                    <Navbar.Brand>
-                        <a href="#">Duet</a>
-                    </Navbar.Brand>
-                    <Navbar.Toggle />
-                </Navbar.Header>
-                <Navbar.Collapse>
-                    <Nav>
-                        <NavItem eventKey={1} href="#">Home</NavItem>
-                        <NavItem eventKey={2} href="#">Map</NavItem>
-                    </Nav>
-                    <Nav pullRight>
-                        <NavItem eventKey={1} href="#">Sign In</NavItem>
-                        <NavItem eventKey={2} href="#">Create Profile</NavItem>
-                    </Nav>
-                </Navbar.Collapse>
-            </Navbar>
+            <div>
+                <Navbar inverse collapseOnSelect>
+                    <Navbar.Header>
+                        <Navbar.Brand>
+                            <a href="#">Duet</a>
+                        </Navbar.Brand>
+                        <Navbar.Toggle />
+                    </Navbar.Header>
+                    <Navbar.Collapse>
+                        <Nav>
+                            <NavItem eventKey={1} href="#" onClick={() => { this.setState({ nav_bar_state: 'profiles' }); }}>Home</NavItem>
+                            <NavItem eventKey={2} href="#" onClick={() => { this.setState({ nav_bar_state: 'map' }); }}>Map</NavItem>
+                        </Nav>
+                        <Nav pullRight>
+                            <NavItem eventKey={1} href="#">Sign In</NavItem>
+                            <NavItem eventKey={2} href="#" onClick={() => { this.setState({ nav_bar_state: 'form' }); }}>Create Profile</NavItem>
+                        </Nav>
+                    </Navbar.Collapse>
+                </Navbar>
+                {child}
+            </div>
         );
     }
 }
