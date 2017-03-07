@@ -3,9 +3,40 @@ import {render} from 'react-dom';
 
 class FormComponent extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.createUser = this.createUser.bind(this);
+        this.handleCheckBox = this.handleCheckBox.bind(this);
+    }
+    handleChange(e){
+        const key = e.target.id;
+        var state = {};
+        state[key] = e.target.value;
+        this.setState(state);
+    }
+    handleCheckBox(e){
+        const name = e.target.name;
+        const checked = e.target.checked;
+        let skills = this.state.skills || [];
+        if(checked) {
+            skills.push(name);
+        } else {
+            const nameIndex = skills.indexOf(name);
+            skills.splice(nameIndex, 1);
+        }
+        this.setState({ skills: skills });
+    }
+    createUser() {
+        this.props.base.push("users", { data: this.state });
+    }
     render() {
 
-        const skillSets = ['Vocals', 'Guitar', 'Bass', 'Drums', 'DJ', 'Keyboard/Piano', 'Composing', 'Violin/Viola', 'Cello', 'Clarinet', 'Flute', 'Harp', 'Bassoon', 'Saxophone']
+        const skillSets = ['Vocals', 'Guitar', 'Bass', 'Drums', 'DJ', 'Keyboard/Piano', 'Composing', 'Violin/Viola', 'Cello', 'Clarinet', 'Flute', 'Harp', 'Bassoon', 'Saxophone'];
         return (
            <div>
                <div className="form_body col-md-6 col-md-offset-3 well">
@@ -15,7 +46,7 @@ class FormComponent extends React.Component {
                    <div className="form-group row">
                        <div className="col-md-12">
                            <label>Name</label>
-                           <input className="form-control" type="text" id="name_input" placeholder="Jenkins, Leroy"/>
+                           <input className="form-control" type="text" id="name" placeholder="Jenkins, Leroy" onChange={this.handleChange}/>
                        </div>
                    </div>
                    <div className="form-group row">
@@ -27,19 +58,19 @@ class FormComponent extends React.Component {
                    <div className="form-group row">
                        <div className="col-md-2">
                            <label>Age</label>
-                           <input className="form-control" type="number" id="age_input" placeholder="Age"/>
+                           <input className="form-control" type="number" id="age" placeholder="Age" onChange={this.handleChange}/>
                        </div>
                    </div>
                    <div className="form-group row">
                        <div className="col-md-12">
                            <label>About Me</label>
-                           <textarea className="form-control" type="text" id="description_input" placeholder="I hope one day I love something the way women in commercials love yogurt."></textarea>
+                           <textarea className="form-control" type="text" id="description" placeholder="I hope one day I love something the way women in commercials love yogurt." onChange={this.handleChange}/>
                        </div>
                    </div>
                    <div className="form-group row">
                        <div className="col-md-12">
                            <label>I'm interested in finding other..i.e bands, vocalists, guitarists</label>
-                           <select className="form-control" type="text" id="interest_input" placeholder="I'm interested in finding other..">
+                           <select className="form-control" type="text" id="interest" placeholder="I'm interested in finding other.." onChange={this.handleChange}>
                                <option>Bands</option>
                                <option>Vocalists</option>
                                <option>Guitarists</option>
@@ -62,11 +93,12 @@ class FormComponent extends React.Component {
                    <div className="form-group row">
                        <div className="col-md-12">
                            <label>My skills</label>
-                           <div className="checkbox" type="text" id="skill_set_input" placeholder="i.e Guitar, Bass, Vocals">
+                           <div className="checkbox" type="text" id="skills" placeholder="i.e Guitar, Bass, Vocals">
                                {
-                                   skillSets.map((skill) => {
+                                   skillSets.map((skill, i) => {
                                        return (
-                                           <label><input type="checkbox"/>{skill}</label>
+                                           <label key={i}>
+                                               <input type="checkbox" onChange={this.handleCheckBox} name={skill}/>{skill}</label>
                                        )
                                    })
                                }
@@ -76,7 +108,7 @@ class FormComponent extends React.Component {
                    <div className="form-group row">
                        <div className="col-md-12">
                            <label>Gear</label>
-                           <input className="form-control" type="text" id="equipment_input" placeholder="Hornucopian Dronepipe, Octobass.."/>
+                           <input className="form-control" type="text" id="equipment" placeholder="Hornucopian Dronepipe, Octobass.." onChange={this.handleChange}/>
                        </div>
                    </div>
                    {/*<div className="form-group row">*/}
@@ -125,7 +157,7 @@ class FormComponent extends React.Component {
                    </div>
                    <div className="form-group row">
                        <div className="col-md-6 col-md-offset-3 col-xs-4 col-xs-offset-4">
-                           <button type="submit" className="btn btn-success col-md-3 col-md-offset-3" onclick="create_object()">Create Profile!</button>
+                           <button type="submit" className="btn btn-success col-md-3 col-md-offset-3" onClick={this.createUser}>Create Profile!</button>
                        </div>
                    </div>
                </div>

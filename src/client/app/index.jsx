@@ -6,6 +6,14 @@ import MapComponent from './map.jsx';
 import ProfilesComponent from './profiles.jsx';
 import FormComponent from './form.jsx';
 
+import Rebase from 're-base';
+var base = Rebase.createClass({
+    apiKey: "AIzaSyBFllsD1oZhzNqwUBsRjwl737elLzAHhhk",
+    authDomain: "duet-121be.firebaseapp.com",
+    databaseURL: "https://duet-121be.firebaseio.com",
+    storageBucket: "duet-121be.appspot.com",
+    messagingSenderId: "150524076776"
+});
 class App extends React.Component {
 
     constructor(props) {
@@ -26,7 +34,7 @@ class App extends React.Component {
                 child = <MapComponent />;
                 break;
             case 'form':
-                child = <FormComponent />;
+                child = <FormComponent base={base}/>;
                 break;
         }
 
