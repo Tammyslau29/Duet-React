@@ -5,10 +5,7 @@ class FormComponent extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-
-        };
-
+        this.state = {};
         this.handleChange = this.handleChange.bind(this);
         this.createUser = this.createUser.bind(this);
         this.handleCheckBox = this.handleCheckBox.bind(this);
@@ -39,38 +36,39 @@ class FormComponent extends React.Component {
         const skillSets = ['Vocals', 'Guitar', 'Bass', 'Drums', 'DJ', 'Keyboard/Piano', 'Composing', 'Violin/Viola', 'Cello', 'Clarinet', 'Flute', 'Harp', 'Bassoon', 'Saxophone'];
         return (
            <div>
+               hello
                <div className="form_body col-md-6 col-md-offset-3 well">
                    <div className="row avatar_img col-md-6 col-md-offset-3">
-                       <img src="https://www.wpsymposiumpro.com/wp-content/uploads/2014/04/iStock_000033523696Small.jpg"/>
+                       <img className="profile-pic" src="https://www.wpsymposiumpro.com/wp-content/uploads/2014/04/iStock_000033523696Small.jpg"/>
                    </div>
                    <div className="form-group row">
                        <div className="col-md-12">
                            <label>Name</label>
-                           <input className="form-control" type="text" id="name" placeholder="Jenkins, Leroy" onChange={this.handleChange}/>
+                           <input className="form-control" type="text" id="name" onChange={this.handleChange}/>
                        </div>
                    </div>
                    <div className="form-group row">
                        <div className="col-md-12">
                            <label>Location</label>
-                           <input className="form-control" type="text" id="location_input" placeholder="Anaheim, CA"/>
+                           <input className="form-control" type="text" id="location_input"/>
                        </div>
                    </div>
                    <div className="form-group row">
                        <div className="col-md-2">
                            <label>Age</label>
-                           <input className="form-control" type="number" id="age" placeholder="Age" onChange={this.handleChange}/>
+                           <input className="form-control" type="number" id="age" onChange={this.handleChange}/>
                        </div>
                    </div>
                    <div className="form-group row">
                        <div className="col-md-12">
                            <label>About Me</label>
-                           <textarea className="form-control" type="text" id="description" placeholder="I hope one day I love something the way women in commercials love yogurt." onChange={this.handleChange}/>
+                           <textarea className="form-control" type="text" id="description" onChange={this.handleChange}/>
                        </div>
                    </div>
                    <div className="form-group row">
                        <div className="col-md-12">
                            <label>I'm interested in finding other..i.e bands, vocalists, guitarists</label>
-                           <select className="form-control" type="text" id="interest" placeholder="I'm interested in finding other.." onChange={this.handleChange}>
+                           <select className="form-control" type="text" id="interest" onChange={this.handleChange}>
                                <option>Bands</option>
                                <option>Vocalists</option>
                                <option>Guitarists</option>
@@ -93,7 +91,7 @@ class FormComponent extends React.Component {
                    <div className="form-group row">
                        <div className="col-md-12">
                            <label>My skills</label>
-                           <div className="checkbox" type="text" id="skills" placeholder="i.e Guitar, Bass, Vocals">
+                           <div className="checkbox" type="text" id="skills">
                                {
                                    skillSets.map((skill, i) => {
                                        return (
@@ -108,7 +106,7 @@ class FormComponent extends React.Component {
                    <div className="form-group row">
                        <div className="col-md-12">
                            <label>Gear</label>
-                           <input className="form-control" type="text" id="equipment" placeholder="Hornucopian Dronepipe, Octobass.." onChange={this.handleChange}/>
+                           <input className="form-control" type="text" id="equipment" onChange={this.handleChange}/>
                        </div>
                    </div>
                    {/*<div className="form-group row">*/}
