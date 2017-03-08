@@ -28,7 +28,7 @@ class App extends React.Component {
         let child;
         switch(this.state.nav_bar_state) {
             case 'profiles':
-                child = <ProfilesComponent />;
+                child = <ProfilesComponent base={base}/>;
                 break;
             case 'map':
                 child = <MapComponent />;
