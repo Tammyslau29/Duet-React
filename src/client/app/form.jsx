@@ -5,10 +5,7 @@ class FormComponent extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-
-        };
-
+        this.state = {};
         this.handleChange = this.handleChange.bind(this);
         this.createUser = this.createUser.bind(this);
         this.handleCheckBox = this.handleCheckBox.bind(this);
