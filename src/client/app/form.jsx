@@ -36,19 +36,18 @@ class FormComponent extends React.Component {
         const skillSets = ['Vocals', 'Guitar', 'Bass', 'Drums', 'DJ', 'Keyboard/Piano', 'Composing', 'Violin/Viola', 'Cello', 'Clarinet', 'Flute', 'Harp', 'Bassoon', 'Saxophone'];
         return (
            <div>
-               hello
-               <div className="form_body col-md-6 col-md-offset-3 well">
+               <div className="form_body col-md-12 well">
                    <div className="row avatar_img col-md-6 col-md-offset-3">
                        <img className="profile-pic" src="https://www.wpsymposiumpro.com/wp-content/uploads/2014/04/iStock_000033523696Small.jpg"/>
                    </div>
                    <div className="form-group row">
-                       <div className="col-md-12">
+                       <div className="col-md-6">
                            <label>Name</label>
                            <input className="form-control" type="text" id="name" onChange={this.handleChange}/>
                        </div>
                    </div>
                    <div className="form-group row">
-                       <div className="col-md-12">
+                       <div className="col-md-6">
                            <label>Location</label>
                            <input className="form-control" type="text" id="location_input"/>
                        </div>
@@ -66,7 +65,7 @@ class FormComponent extends React.Component {
                        </div>
                    </div>
                    <div className="form-group row">
-                       <div className="col-md-12">
+                       <div className="col-md-6">
                            <label>I'm interested in finding other..i.e bands, vocalists, guitarists</label>
                            <select className="form-control" type="text" id="interest" onChange={this.handleChange}>
                                <option>Bands</option>
@@ -89,7 +88,7 @@ class FormComponent extends React.Component {
                        </div>
                    </div>
                    <div className="form-group row">
-                       <div className="col-md-12">
+                       <div className="col-md-6">
                            <label>My skills</label>
                            <div className="checkbox" type="text" id="skills">
                                {
@@ -104,7 +103,7 @@ class FormComponent extends React.Component {
                        </div>
                    </div>
                    <div className="form-group row">
-                       <div className="col-md-12">
+                       <div className="col-md-6">
                            <label>Gear</label>
                            <input className="form-control" type="text" id="equipment" onChange={this.handleChange}/>
                        </div>

@@ -43,14 +43,14 @@ class App extends React.Component {
                 <Navbar inverse collapseOnSelect>
                     <Navbar.Header>
                         <Navbar.Brand>
-                            <a href="#">Duet</a>
+                            <a href="#">duet.</a>
                         </Navbar.Brand>
                         <Navbar.Toggle />
                     </Navbar.Header>
                     <Navbar.Collapse>
                         <Nav>
                             <NavItem eventKey={1} href="#" onClick={() => { this.setState({ nav_bar_state: 'profiles' }); }}>Home</NavItem>
-                            <NavItem eventKey={2} href="#" onClick={() => { this.setState({ nav_bar_state: 'map' }); }}>Map</NavItem>
+                            <NavItem eventKey={2} href="#" onClick={() => { this.setState({ nav_bar_state: 'map' }); }}>Discover</NavItem>
                         </Nav>
                         <Nav pullRight>
                             <NavItem eventKey={1} href="#">Sign In</NavItem>
