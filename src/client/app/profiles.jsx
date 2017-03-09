@@ -38,14 +38,13 @@ class ProfilesComponent extends React.Component {
         });
     }
     render() {
-        console.log(this.state.users);
         return (
             <div>
                 <Carousel>
                     {this.state.users.map((user, i) => {
                         return (
                             <Carousel.Item onClick={() => { this.toggleModal(i, true); }}>
-                                <div class="name_display">
+                                <div className="name_display">
                                     <h1 className="name">{user.name}</h1>
                                 </div>
                                 <img className="display_pic" src="https://www.wpsymposiumpro.com/wp-content/uploads/2014/04/iStock_000033523696Small.jpg"/>

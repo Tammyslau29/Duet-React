@@ -1,9 +1,92 @@
+body{
+    background-image: url("images/piano.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 .profile-pic{
     width: 200px;
-}
-.name_display{
-    height:500px;
+    margin-bottom: 10px
 }
 .display_pic{
     margin: 0 auto;
+}
+.navbar, .modal-title{
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+}
+.navbar-brand, .name{
+    font-family: 'Homemade Apple', cursive;
+    font-size: 25px;
+    line-height: 26px;
+}
+.navbar-inverse{
+    background-color: rgba(41, 39, 39, 0.69);
+    border:none;
+    border-radius: 0px;
+}
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav>li>a {
+    color: white;
+}
+.name{
+    text-align: center;
+    color: white;
+}
+.carousel.slide{
+    height: 100%;
+}
+.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img{
+    height: 80vh;
+}
+.modal-title{
+    background-image: url("images/record.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 150px;
+    font-size: 7em;
+    text-align: center;
+    color: #9a9a9a;
+}
+.modal-header{
+    padding: 0;
+}
+.info{
+    text-align: center;
+}
+.close{
+    color: white;
+    opacity: 1;
+    text-shadow: none;
+    padding-right: 4px;
+    font-size: 30px;
+}
+.well{
+    border: none;
+    background-color: rgba(54, 56, 58, 0.58);
+    color: white;
+}
+.form_body{
+    font-family: 'Raleway', sans-serif;
+}
+.form-control{
+    background-color: transparent;
+    border: 1px white;
+    border-style: none none solid none;
+    border-radius: 1px;
+    background-image: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.create_profile{
+    font-size: 3em;
+    margin-top: 30px;
+    font-family: 'Homemade Apple', cursive;
+}
+.youtube_modal_title{
+    background-image: url("images/record.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 150px;
+    font-size: 2em;
+    text-align: center;
+    color: #9a9a9a;
 }
