@@ -50,7 +50,7 @@ class FormComponent extends React.Component {
                <div className="form_body col-md-8 col-md-offset-2 well">
                    <div className="row avatar_img">
                        <label className="col-form-label create_profile col-md-8 col-sm-12">Create A Profile</label>
-                       <div className="col-md-2 col-sm-6 col-sm-offset-3">
+                       <div className="col-md-2 col-sm-6">
                            <img className="profile-pic" src="https://www.wpsymposiumpro.com/wp-content/uploads/2014/04/iStock_000033523696Small.jpg"/>
                        </div>
                    </div>
