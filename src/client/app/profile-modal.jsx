@@ -13,7 +13,7 @@ class ProfileModalComponent extends React.Component {
         return (
             <Modal show={user.showModal} onHide={this.props.hide}>
                 <Modal.Header closeButton>
-                    <Modal.Title>{user.name}</Modal.Title>
+                    <Modal.Title className="modal_title">{user.name}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div className="info">

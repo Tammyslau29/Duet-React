@@ -38,7 +38,6 @@ class ProfilesComponent extends React.Component {
         });
     }
     render() {
-        console.log(this.state.users);
         return (
             <div>
                 <Carousel>
