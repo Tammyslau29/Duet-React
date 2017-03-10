@@ -22,7 +22,10 @@ class App extends React.Component {
         this.state = {
             nav_bar_state: 'profiles',
         };
-
+        this.returnToProfile = this.returnToProfile.bind(this)
+    }
+    returnToProfile(profile){
+        this.setState({nav_bar_state: profile})
     }
     render() {
         let child;
@@ -34,7 +37,7 @@ class App extends React.Component {
                 child = <MapComponent />;
                 break;
             case 'form':
-                child = <FormComponent base={base}/>;
+                child = <FormComponent base={base} returnToProfile={this.returnToProfile}/>;
                 break;
         }
 
