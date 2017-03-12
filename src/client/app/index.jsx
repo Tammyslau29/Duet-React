@@ -34,7 +34,7 @@ class App extends React.Component {
                 child = <ProfilesComponent base={base}/>;
                 break;
             case 'map':
-                child = <MapComponent />;
+                child = <MapComponent base={base} />;
                 break;
             case 'form':
                 child = <FormComponent base={base} returnToProfile={this.returnToProfile}/>;

@@ -9,7 +9,7 @@ class FormComponent extends React.Component {
         this.state = {
             user:{
                 videos: [],
-                skills: []
+                skills: [],
             },
             modalState: false
         };
@@ -18,6 +18,11 @@ class FormComponent extends React.Component {
         this.handleCheckBox = this.handleCheckBox.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
         this.onVideosSelected = this.onVideosSelected.bind(this);
+        this.handleLocationChange = this.handleLocationChange.bind(this);
+    }
+    componentDidMount() {
+        this.autocomplete = new google.maps.places.Autocomplete(this.locationInput);
+        this.autocomplete.addListener('place_changed', this.handleLocationChange)
     }
     handleChange(e){
         const key = e.target.id;
@@ -55,6 +60,16 @@ class FormComponent extends React.Component {
         tempUser.videos = video_ids
         this.setState({user: tempUser})
     }
+    handleLocationChange(){
+        const place = this.autocomplete.getPlace();
+        const tmpUser = Object.assign({}, this.state.user);
+        tmpUser.location = {
+            name: place.formatted_address,
+            lat: place.geometry.location.lat(),
+            lng: place.geometry.location.lng(),
+        };
+        this.setState({ user: tmpUser });
+    }
     render() {
 
         const skillSets = ['Vocals', 'Guitar', 'Bass', 'Drums', 'DJ', 'Keyboard/Piano', 'Composing', 'Violin/Viola', 'Cello', 'Clarinet', 'Flute', 'Harp', 'Bassoon', 'Saxophone'];
@@ -76,7 +91,7 @@ class FormComponent extends React.Component {
                    <div className="form-group row">
                        <label className="col-form-label col-md-2">Location</label>
                        <div className="col-md-10">
-                           <input className="form-control" type="text" id="location_input"/>
+                           <input className="form-control" type="text" id="location" ref={(input) => { this.locationInput = input; }}/>
                        </div>
                    </div>
                    <div className="form-group row">
