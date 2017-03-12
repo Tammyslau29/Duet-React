@@ -14,6 +14,7 @@ class YoutubeSearchModal extends React.Component {
         this.clearYoutubeForm = this.clearYoutubeForm.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.addVideo = this.addVideo.bind(this);
+        this.selectVideos = this.selectVideos.bind(this);
     }
     handleChange(e) {
         this.setState({ searchTerm: e.target.value });
@@ -52,12 +53,23 @@ class YoutubeSearchModal extends React.Component {
             videos: []
         })
     }
-    addVideo(e){
-        const selectedObj = {};
-        const key = e.target.data-name;
-        selectedObj[key] = e.target.value;
-        const tempObject = Object.assign({}, this.state.videos.selectedObj);
-        this.setState({videos: tempObject})
+    addVideo(i){
+       const tempVid = Object.assign({},this.state.videos[i]);
+        tempVid.selected = !tempVid.selected;
+        this.setState({
+            videos: [
+                ...this.state.videos.slice(0, i),
+                tempVid,
+                ...this.state.videos.slice(i + 1)
+            ]
+        });
+    }
+    selectVideos(){
+       const selected_videos = this.state.videos.filter((video)=> {
+           return video.selected;
+       })
+        this.props.onVideosSelected(selected_videos);
+        this.props.hide
     }
     render() {
 
@@ -65,7 +77,7 @@ class YoutubeSearchModal extends React.Component {
             <Modal show={this.props.show} onHide={this.props.hide}>
                 <Modal.Header closeButton>
                     <Modal.Title className="youtube_modal_title">
-                        <h4 className = "youtube_modal_title">Choose a Youtube Clip</h4>
+                        Choose a Youtube Clip
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -75,22 +87,27 @@ class YoutubeSearchModal extends React.Component {
                             <input value={this.state.searchTerm} onChange={this.handleChange}className="form-control" type="search" id="youtube_clip" placeholder="username"/>
                             <Button type="button" className="btn btn-success" onClick={this.getChannel}>Search</Button>
                             <Button type="button" className="btn btn-default" onClick={this.clearYoutubeForm}>Redo Search</Button>
-                            <p className="video_display">
+                            <div className="video_display">
                                 {this.state.videos.map((video, index) => {
+                                    const buttonText = video.selected ? "Video Selected" : "Select Video";
+                                    const buttonStyle = {
+                                        backgroundColor: video.selected ? "black" : "white",
+                                        color: video.selected ? "white" : "grey"
+                                    }
                                     return (
                                         <div key={index}>
                                             <div className="video_title"><label>{video.title}</label></div>
-                                            <Button data-name={video.title} value={"https://www.youtube.com/embed/" + video.resourceId.videoId} type="button" className = "btn btn-default addVideo" onClick={this.addVideo}>Select Video</Button>
+                                            <Button style={buttonStyle} type="button" className = "btn btn-default addVideo" onClick={() => this.addVideo(index)}>{buttonText}</Button>
                                             <iframe  src={"https://www.youtube.com/embed/" + video.resourceId.videoId} width="460" height="305"></iframe>
                                         </div>)
                                 })}
-                            </p>
+                            </div>
                         </div>
                     </form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button type="button" className="btn btn-primary" data-dismiss="modal" onclick="upload_video()">Upload Video</Button>
-                    <Button type="button" className="btn btn-secondary" data-dismiss="modal">Close</Button>
+                    <Button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.selectVideos}>Upload Video</Button>
+                    <Button type="button" className="btn btn-secondary" onClick={this.props.hide}>Close</Button>
                 </Modal.Footer>
             </Modal>
         );

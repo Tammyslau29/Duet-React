@@ -12,18 +12,14 @@ class ProfilesComponent extends React.Component {
         this.toggleModal = this.toggleModal.bind(this);
     }
     componentDidMount(){
-        this.props.base.bindToState(`users`, {
+        this.ref = this.props.base.bindToState(`users`, {
             context: this,
             state: 'users',
             asArray: true
         });
-        function map(callback) {
-            var newArray = []
-            for(var i = 0; i < this.length; i++) {
-                newArray.push(callback(this[i], i));
-            }
-            return newArray;
-        }
+    }
+    componentWillUnmount() {
+        this.props.base.removeBinding(this.ref);
     }
     toggleModal(i, open){
         const user = Object.assign({}, this.state.users[i]);
@@ -43,7 +39,7 @@ class ProfilesComponent extends React.Component {
                 <Carousel>
                     {this.state.users.map((user, i) => {
                         return (
-                            <Carousel.Item onClick={() => { this.toggleModal(i, true); }}>
+                            <Carousel.Item key={i} onClick={() => { this.toggleModal(i, true); }}>
                                 <div className="name_display">
                                     <h1 className="name">{user.name}</h1>
                                 </div>

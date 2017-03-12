@@ -7,13 +7,22 @@ class FormComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            user:{},
+            user:{
+                videos: [],
+                skills: [],
+            },
             modalState: false
         };
         this.handleChange = this.handleChange.bind(this);
         this.createUser = this.createUser.bind(this);
         this.handleCheckBox = this.handleCheckBox.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
+        this.onVideosSelected = this.onVideosSelected.bind(this);
+        this.handleLocationChange = this.handleLocationChange.bind(this);
+    }
+    componentDidMount() {
+        this.autocomplete = new google.maps.places.Autocomplete(this.locationInput);
+        this.autocomplete.addListener('place_changed', this.handleLocationChange)
     }
     handleChange(e){
         const key = e.target.id;
@@ -38,9 +47,28 @@ class FormComponent extends React.Component {
     }
     createUser() {
         this.props.base.push("users", { data: this.state.user });
+        this.props.returnToProfile("profiles");
     }
     toggleModal(open){
         this.setState({modalState: open});
+    }
+    onVideosSelected(selected_videos){
+        const video_ids = selected_videos.map((video)=>{
+           return video.resourceId.videoId
+        })
+        const tempUser = Object.assign({}, this.state.user);
+        tempUser.videos = video_ids
+        this.setState({user: tempUser})
+    }
+    handleLocationChange(){
+        const place = this.autocomplete.getPlace();
+        const tmpUser = Object.assign({}, this.state.user);
+        tmpUser.location = {
+            name: place.formatted_address,
+            lat: place.geometry.location.lat(),
+            lng: place.geometry.location.lng(),
+        };
+        this.setState({ user: tmpUser });
     }
     render() {
 
@@ -63,7 +91,7 @@ class FormComponent extends React.Component {
                    <div className="form-group row">
                        <label className="col-form-label col-md-2">Location</label>
                        <div className="col-md-10">
-                           <input className="form-control" type="text" id="location_input"/>
+                           <input className="form-control" type="text" id="location" ref={(input) => { this.locationInput = input; }}/>
                        </div>
                    </div>
                    <div className="form-group row">
@@ -124,12 +152,15 @@ class FormComponent extends React.Component {
                        <label className="col-form-label col-md-4">Upload your video from Youtube</label>
                        <div className="col-md-4 col-sm-12">
                        <Button type="submit" className="btn btn-primary btn-lg" onClick={() => this.toggleModal(true)} >Select Youtube Clip</Button>
-                       <YoutubeSearchModal show={this.state.modalState} hide={() => this.toggleModal(false)}/>
+                       <YoutubeSearchModal show={this.state.modalState} hide={() => this.toggleModal(false)} onVideosSelected={this.onVideosSelected} />
                    </div>
                    </div>
                    <div className="form-group row">
                        <div className="col-md-8 youtube_clip_area">
                            <label className="col-form-label col-md-4">Preview Youtube Clips: </label>
+                           {this.state.user.videos.map((video_id)=>{
+                              return <iframe  src={"https://www.youtube.com/embed/" + video_id} width="460" height="305"/>
+                           })}
                        </div>
                    </div>
                    {/*<div className="form-group row">*/}
