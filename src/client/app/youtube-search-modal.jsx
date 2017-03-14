@@ -83,7 +83,7 @@ class YoutubeSearchModal extends React.Component {
                 <Modal.Body>
                     <form>
                         <div className="form-group">
-                            <label>Search by Youtube Channel: </label>
+                            <label>Search by Youtube Username (no spaces): </label>
                             <input value={this.state.searchTerm} onChange={this.handleChange}className="form-control" type="search" id="youtube_clip" placeholder="username"/>
                             <Button type="button" className="btn btn-success" onClick={this.getChannel}>Search</Button>
                             <Button type="button" className="btn btn-default" onClick={this.clearYoutubeForm}>Redo Search</Button>
@@ -91,14 +91,16 @@ class YoutubeSearchModal extends React.Component {
                                 {this.state.videos.map((video, index) => {
                                     const buttonText = video.selected ? "Video Selected" : "Select Video";
                                     const buttonStyle = {
-                                        backgroundColor: video.selected ? "black" : "white",
+                                        backgroundColor: video.selected ? "#0a7d8c" : "white",
                                         color: video.selected ? "white" : "grey"
                                     }
                                     return (
                                         <div key={index}>
                                             <div className="video_title"><label>{video.title}</label></div>
-                                            <Button style={buttonStyle} type="button" className = "btn btn-default addVideo" onClick={() => this.addVideo(index)}>{buttonText}</Button>
-                                            <iframe  src={"https://www.youtube.com/embed/" + video.resourceId.videoId} width="460" height="305"></iframe>
+                                            <div className="button_and_iframe">
+                                                <Button style={buttonStyle} type="button" className = "btn btn-default addVideo" onClick={() => this.addVideo(index)}>{buttonText}</Button>
+                                                <iframe  src={"https://www.youtube.com/embed/" + video.resourceId.videoId} width="460" height="305"></iframe>
+                                            </div>
                                         </div>)
                                 })}
                             </div>

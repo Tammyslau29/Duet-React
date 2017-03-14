@@ -5,7 +5,7 @@ body{
 }
 .profile-pic{
     width: 200px;
-    margin-bottom: 10px
+    margin: 10px
 }
 .display_pic{
     margin: 0 auto;
@@ -34,7 +34,7 @@ body{
 .carousel.slide{
     height: 100%;
 }
-.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img{
+.carousel-inner>.item>img{
     height: 80vh;
 }
 .modal-title{
@@ -90,3 +90,31 @@ body{
     text-align: center;
     color: #9a9a9a;
 }
+.button_and_iframe, .youtube_clip_area{
+    display: flex;
+}
+
+input#youtube_clip.form-control{
+    background-color: #0a8fa0;
+}
+input, #interest{
+    color:white !important;
+}
+@media(max-width: 480px){
+    .create_profile{
+        font-size: 35px;
+    }
+    .profile-pic-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .carousel-inner{
+        top: 50%;
+        transform: translate(0, -65%);
+    }
+    .carousel-inner>.item>img{
+        height: auto;
+    }
+}
+
