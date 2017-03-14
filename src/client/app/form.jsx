@@ -78,7 +78,7 @@ class FormComponent extends React.Component {
                <div className="form_body col-md-8 col-md-offset-2 well">
                    <div className="row avatar_img">
                        <label className="col-form-label create_profile col-md-8 col-sm-12">Create A Profile</label>
-                       <div className="col-md-2 col-sm-6">
+                       <div className="col-md-2 col-sm-6 profile-pic-container">
                            <img className="profile-pic" src="https://www.wpsymposiumpro.com/wp-content/uploads/2014/04/iStock_000033523696Small.jpg"/>
                        </div>
                    </div>
@@ -158,8 +158,8 @@ class FormComponent extends React.Component {
                    <div className="form-group row">
                        <div className="col-md-8 youtube_clip_area">
                            <label className="col-form-label col-md-4">Preview Youtube Clips: </label>
-                           {this.state.user.videos.map((video_id)=>{
-                              return <iframe  src={"https://www.youtube.com/embed/" + video_id} width="460" height="305"/>
+                           {this.state.user.videos.map((i,video_id)=>{
+                              return <iframe  key={i} src={"https://www.youtube.com/embed/" + video_id} width="460" height="305"/>
                            })}
                        </div>
                    </div>
